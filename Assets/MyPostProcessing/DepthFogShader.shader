@@ -63,12 +63,12 @@ Shader "Custom/DepthFogShader"
 
 				#if 1 // anti-alias depth
 				float depth = 0.0;
-				float e = _CameraDepthTexture_TexelSize.y*pow(getDepth(i.screen),2.0)*10.0;
+				float e = _CameraDepthTexture_TexelSize.y*pow(getDepth(i.screen),0.5)*3.0;
 				depth += abs(getDepth(i.screen + float4(e, 0.0, 0.0, 0.0)) - getDepth(i.screen + float4(-e, 0.0, 0.0, 0.0)));
 				depth += abs(getDepth(i.screen + float4(0.0, e, 0.0, 0.0)) - getDepth(i.screen + float4(0.0, -e, 0.0, 0.0)));
 				depth += abs(getDepth(i.screen + float4(0.0, 0.0, e, 0.0)) - getDepth(i.screen + float4(0.0, 0.0, -e, 0.0)));
-				depth /= 3.0;
-				depth = getDepth(i.screen)*c.rgb + depth*10.0;
+				// depth /= 3.0;
+				depth = (getDepth(i.screen)+0.5)*c.r + lerp(-1.0, 1.0, depth);
 				#else
 				float depth = getDepth(i.screen);
 				#endif
