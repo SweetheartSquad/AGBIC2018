@@ -64,11 +64,12 @@ Shader "Custom/DepthFogShader"
 				#if 1 // anti-alias depth
 				float depth = 0.0;
 				float e = _CameraDepthTexture_TexelSize.y*pow(getDepth(i.screen),0.5)*3.0;
-				depth += abs(getDepth(i.screen + float4(e, 0.0, 0.0, 0.0)) - getDepth(i.screen + float4(-e, 0.0, 0.0, 0.0)));
-				depth += abs(getDepth(i.screen + float4(0.0, e, 0.0, 0.0)) - getDepth(i.screen + float4(0.0, -e, 0.0, 0.0)));
-				depth += abs(getDepth(i.screen + float4(0.0, 0.0, e, 0.0)) - getDepth(i.screen + float4(0.0, 0.0, -e, 0.0)));
-				// depth /= 3.0;
-				depth = (getDepth(i.screen)+0.5)*c.r + lerp(-1.0, 1.0, depth);
+				const float inc = 3;
+				for(float a = 0; a < 6.28; a += 6.28/inc) {
+					depth += abs(getDepth(i.screen + float4(cos(a)*e, sin(a)*e, 0.0, 0.0)) - getDepth(i.screen + float4(cos(a)*-e, sin(a)*-e, 0.0, 0.0)));
+				}
+				depth /= inc;
+				depth = getDepth(i.screen)*(c.r*2.0) + 1.0 + lerp(-1.0, 1.0, depth);
 				#else
 				float depth = getDepth(i.screen);
 				#endif
@@ -76,10 +77,6 @@ Shader "Custom/DepthFogShader"
 				float3 fog = float3(depth,depth,depth);
 
 				depth = 1.0-depth;
-
-				#if 0 // remove fog from skybox
-				depth = step(depth,0.999)*depth;
-				#endif
 
 				// fog wall
 				fog = lerp(fog, tex2D(_FogTex, half2(1.0-depth,0.5)).rgb, _Texturize);
