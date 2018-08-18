@@ -48,10 +48,15 @@ Shader "Custom/DepthFogShader"
 				return o;
 			}
 
+			float rand(float3 co){
+				return frac(sin( dot(co.xyz ,float3(12.9898,78.233,45.5432) )) * 43758.5453);
+			}
+
 			float getDepth(float4 pos){
 				float depth = Linear01Depth(tex2Dproj(_CameraDepthTexture, UNITY_PROJ_COORD(pos)));
 				depth = map(depth, _Center-_Range/2, _Center+_Range/2, 1, 0);
-				depth = clamp(depth, 0, 1);
+				depth += (rand(float3(pos.x,pos.y,_Time.y))-0.5)/256.0;
+				depth = clamp(depth, 0.0, 1.0);
 				return depth;
 			}
 
@@ -74,10 +79,10 @@ Shader "Custom/DepthFogShader"
 				float depth = getDepth(i.screen);
 				#endif
 
-				float3 fog = float3(depth,depth,depth);
+				depth -= pow(abs(0.5 - i.screen.x) + rand(float3(i.screen.x,i.screen.y,_Time.y))/12.0, 2.0);
 
 				// fog wall
-				fog = lerp(fog, tex2D(_FogTex, half2(depth,0.5)).rgb, _Texturize);
+				float3 fog = lerp(float3(depth,depth,depth), tex2D(_FogTex, half2(depth,0.5)).rgb, _Texturize);
 				fog = lerp(c.rgb, fog, _Amount);
 				c.rgb = clamp(fog,0.0,1.0);
 				return fixed4(c);
