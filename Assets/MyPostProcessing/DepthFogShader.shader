@@ -76,10 +76,8 @@ Shader "Custom/DepthFogShader"
 
 				float3 fog = float3(depth,depth,depth);
 
-				depth = 1.0-depth;
-
 				// fog wall
-				fog = lerp(fog, tex2D(_FogTex, half2(1.0-depth,0.5)).rgb, _Texturize);
+				fog = lerp(fog, tex2D(_FogTex, half2(depth,0.5)).rgb, _Texturize);
 				fog = lerp(c.rgb, fog, _Amount);
 				c.rgb = clamp(fog,0.0,1.0);
 				return fixed4(c);
