@@ -222,6 +222,31 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114882796013805418, guid: fa07d1ae72b22074e884070cb145efa2,
+        type: 2}
+      propertyPath: targetSelfie
+      value: 
+      objectReference: {fileID: 1044936100}
+    - target: {fileID: 114882796013805418, guid: fa07d1ae72b22074e884070cb145efa2,
+        type: 2}
+      propertyPath: anchorSelfie
+      value: 
+      objectReference: {fileID: 436597066}
+    - target: {fileID: 114882796013805418, guid: fa07d1ae72b22074e884070cb145efa2,
+        type: 2}
+      propertyPath: targetShoulder
+      value: 
+      objectReference: {fileID: 1203248890}
+    - target: {fileID: 114882796013805418, guid: fa07d1ae72b22074e884070cb145efa2,
+        type: 2}
+      propertyPath: anchorShoulder
+      value: 
+      objectReference: {fileID: 1290009885}
+    - target: {fileID: 114882796013805418, guid: fa07d1ae72b22074e884070cb145efa2,
+        type: 2}
+      propertyPath: fovSelfie
+      value: 75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa07d1ae72b22074e884070cb145efa2, type: 2}
   m_IsPrefabParent: 0
@@ -835,6 +860,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78a113e8556cdac4aaa1a10b24dbdef5, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &436597065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 436597066}
+  m_Layer: 0
+  m_Name: camAnchorSelfie
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &436597066
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 436597065}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.27, y: 2.41, z: 1.96}
+  m_LocalScale: {x: 0.9999999, y: 1, z: 0.9999999}
+  m_Children: []
+  m_Father: {fileID: 1108227276}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &441256729
 Prefab:
   m_ObjectHideFlags: 0
@@ -1875,6 +1928,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78a113e8556cdac4aaa1a10b24dbdef5, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1044936099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1044936100}
+  m_Layer: 0
+  m_Name: camTargetSelfie
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1044936100
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1044936099}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.02, y: 2.59, z: 0.249}
+  m_LocalScale: {x: 0.9999999, y: 1, z: 0.9999999}
+  m_Children: []
+  m_Father: {fileID: 1108227276}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1058347235
 Prefab:
   m_ObjectHideFlags: 0
@@ -2323,7 +2404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1203248890}
   m_Layer: 0
-  m_Name: camTarget
+  m_Name: camTargetShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2397,7 +2478,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1290009885}
   m_Layer: 0
-  m_Name: camAnchor
+  m_Name: camAnchorShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
